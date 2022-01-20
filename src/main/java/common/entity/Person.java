@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AnnotationDemo(age = 1111)
 public class Person {
+    private static final int id = 100;
+
     private String name;
 
     protected int age;
