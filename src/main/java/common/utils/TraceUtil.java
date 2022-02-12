@@ -7,6 +7,16 @@ import java.util.UUID;
 
 @Slf4j
 public class TraceUtil {
+    public static String putTraceIdToMdcAndGet() {
+        String traceId = generateTraceId().replace("-", "");
+        MDC.put("traceId", traceId);
+        return traceId;
+    }
+
+    public static void putTraceIdToMdc(String traceId) {
+        MDC.put("traceId", traceId);
+    }
+
     public static void putTraceIdToMdc() {
         String traceId = generateTraceId().replace("-", "");
         MDC.put("traceId", traceId);
