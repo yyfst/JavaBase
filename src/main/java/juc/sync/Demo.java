@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.locks.LockSupport;
 
+/**
+ * synchronized 不能终端
+ */
 @Slf4j
 public class Demo {
     static final Object lock = new Object();
