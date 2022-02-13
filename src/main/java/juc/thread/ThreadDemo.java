@@ -9,7 +9,7 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class CreateThread {
+public class ThreadDemo {
     static String traceId;
 
     static int a = 0;
