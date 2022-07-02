@@ -19,7 +19,7 @@ public class LazySingleton {
      *
      * @return 单例
      */
-    public static LazySingleton getInstance() {
+    public static LazySingleton getInstance1() {
         if (instance == null) {
             synchronized (LazySingleton.class) {
                 if (instance == null) {
@@ -36,6 +36,60 @@ public class LazySingleton {
             }
         }
 
+        return instance;
+    }
+
+    /**
+     * 该方法存在线程安全问题
+     *
+     * @return 单例
+     */
+    public static LazySingleton getInstance2() {
+        if (instance == null) {
+            instance = new LazySingleton();
+        }
+        return instance;
+    }
+
+    /**
+     * 每个线程访问的时候都会加锁
+     *
+     * @return 单例
+     */
+    public synchronized static LazySingleton getInstance3() {
+        if (instance == null) {
+            instance = new LazySingleton();
+        }
+        return instance;
+    }
+
+    /**
+     * 存在线程安全问题
+     **
+     * @return 单例
+     */
+    public static LazySingleton getInstance4() {
+        if (instance == null) {
+            synchronized (LazySingleton.class) {
+                instance = new LazySingleton();
+            }
+        }
+        return instance;
+    }
+
+    /**
+     * 存在指令重排序问题
+     **
+     * @return 单例
+     */
+    public static LazySingleton getInstance() {
+        if (instance == null) {
+            synchronized (LazySingleton.class) {
+                if (instance == null) {
+                    instance = new LazySingleton();
+                }
+            }
+        }
         return instance;
     }
 }
