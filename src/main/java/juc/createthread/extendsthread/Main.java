@@ -1,4 +1,4 @@
-package juc.createthread;
+package juc.createthread.extendsthread;
 
 import lombok.extern.slf4j.Slf4j;
 
