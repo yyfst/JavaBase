@@ -10,7 +10,7 @@ import java.util.*;
 @Slf4j
 public class BinaryTreeImpl implements BinaryTree {
     @Override
-    public BinaryTreeNode createBinaryTree(List<Character> nodes, int index) {
+    public BinaryTreeNode createBinaryTree(List<Integer> nodes, int index) {
         if (CollectionUtils.isEmpty(nodes) || index >= nodes.size()) {
             return null;
         }
@@ -25,7 +25,7 @@ public class BinaryTreeImpl implements BinaryTree {
     public void preOrder(BinaryTreeNode binaryTree) {
         log.info("pre order by recursion...");
         // 递归实现
-//        preOrderByRecursion(binaryTree);
+        preOrderByRecursion(binaryTree);
 
         log.info("pre order by stack...");
         // 非递归实现
@@ -39,7 +39,7 @@ public class BinaryTreeImpl implements BinaryTree {
 
         log.info("binary tree node: {}", binaryTree.node);
         preOrderByRecursion(binaryTree.leftNode);
-        preOrderByRecursion(binaryTree.leftNode);
+        preOrderByRecursion(binaryTree.rightNode);
     }
 
     private void preOrderByNonRecursion(BinaryTreeNode binaryTree) {
@@ -57,8 +57,8 @@ public class BinaryTreeImpl implements BinaryTree {
                 stack.push(pop.leftNode);
             }
 
-            if (pop.leftNode != null) {
-                stack.push(pop.leftNode);
+            if (pop.rightNode != null) {
+                stack.push(pop.rightNode);
             }
         }
     }
@@ -68,8 +68,8 @@ public class BinaryTreeImpl implements BinaryTree {
         log.info("in order by recursion...");
         inOrderByRecursion(binaryTree);
 
-        log.info("in order by stack...");
-        inOrderByNonRecursion(binaryTree);
+//        log.info("in order by stack...");
+//        inOrderByNonRecursion(binaryTree);
     }
 
     private void inOrderByRecursion(BinaryTreeNode binaryTree) {
@@ -79,7 +79,7 @@ public class BinaryTreeImpl implements BinaryTree {
 
         inOrderByRecursion(binaryTree.leftNode);
         log.info("binary tree node: {}", binaryTree.node);
-        inOrderByRecursion(binaryTree.leftNode);
+        inOrderByRecursion(binaryTree.rightNode);
     }
 
 
@@ -100,7 +100,7 @@ public class BinaryTreeImpl implements BinaryTree {
 
             curNode = treeNodeStack.pop();
             log.info("inOrder by non-recursion node: {}", curNode.node);
-            curNode = curNode.leftNode;
+            curNode = curNode.rightNode;
         }
     }
 
@@ -119,7 +119,7 @@ public class BinaryTreeImpl implements BinaryTree {
         }
 
         postOrderByRecursion(binaryTree.leftNode);
-        postOrderByRecursion(binaryTree.leftNode);
+        postOrderByRecursion(binaryTree.rightNode);
         log.info("binary tree node: {}", binaryTree.node);
     }
 
@@ -137,8 +137,8 @@ public class BinaryTreeImpl implements BinaryTree {
                 stack1.push(pop.leftNode);
             }
 
-            if (pop.leftNode != null) {
-                stack1.push(pop.leftNode);
+            if (pop.rightNode != null) {
+                stack1.push(pop.rightNode);
             }
             stack2.push(pop);
         }
@@ -250,12 +250,12 @@ public class BinaryTreeImpl implements BinaryTree {
     }
 
     @Override
-    public BinaryTreeNode buildTreeByPreAndInOrder(List<Character> preOrder, List<Character> inOrder) {
+    public BinaryTreeNode buildTreeByPreAndInOrder(List<Integer> preOrder, List<Integer> inOrder) {
         return null;
     }
 
     @Override
-    public BinaryTreeNode buildTreeByInAndPostOrder(List<Character> inOrder, List<Character> postOrder) {
+    public BinaryTreeNode buildTreeByInAndPostOrder(List<Integer> inOrder, List<Integer> postOrder) {
         return null;
     }
 }
