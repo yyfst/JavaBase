@@ -1,9 +1,10 @@
+import java.lang.reflect.Field;
 import java.util.*;
 
 public class Application {
-    public static void main(String[] args) {
-        Scanner cin = new Scanner(System.in);
-        int a = cin.nextInt(), b = cin.nextInt();
-        System.out.println(a + b);
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("s", "abce");
     }
 }

@@ -2,6 +2,7 @@ package juc.thread;
 
 import common.utils.TraceUtil;
 import lombok.extern.slf4j.Slf4j;
+import util.ThreadUtil;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -16,46 +17,44 @@ public class ThreadDemo {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         traceId = TraceUtil.putTraceIdToMdcAndGet();
-//        test1();
-//        test2();
-//        test3();
-//        test4();
-//        test5();
-//        test6();
-//        test7();
-
         test8();
-
-        log.info("thread in main: {}", Thread.currentThread().getName());
-        log.info("time in main: {}", System.currentTimeMillis());
-
     }
 
-    private static void test8() {
+    private static void test8() throws InterruptedException {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
+                ThreadUtil.sleep(100);
+                int count = 0;
                 while (true) {
-
+                    count++;
+//                    log.debug("print count, thread:{}, count:{}", Thread.currentThread().getName(), count);
                 }
             }
-        });
-
-        thread1.start();
-
+        }, "thread1");
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    thread1.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                ThreadUtil.sleep(100);
+                int count = 0;
+                while (true) {
+//                    count++;
+//                    Thread.yield();
+//                    log.error("print count, thread:{}, count:{}", Thread.currentThread().getName(), count);
+//                    if (count == 1000000) {
+//                        break;
+//                    }
                 }
             }
-        });
+        }, "thread2");
 
+//        thread2.setPriority(1);
         thread2.start();
-        thread2.interrupt();
+//        thread1.start();
+        thread2.join();
+//        Thread.currentThread().interrupt();
+        log.info("run end.");
+
     }
 
 

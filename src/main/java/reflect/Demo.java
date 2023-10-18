@@ -9,24 +9,15 @@ import java.lang.reflect.*;
 
 @Slf4j
 public class Demo {
-    public static void main(String[] args) throws NoSuchFieldException {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         TraceUtil.putTraceIdToMdc();
 
         log.info("main execute......");
 
-        getClassDemo();
+        Class<Person> personClass = Person.class;
+        Field name = personClass.getDeclaredField("name");
+        System.out.println(name.get(personClass));
 
-        getConstructorDemo();
-
-        getMethodDemo();
-
-        annotationDemo();
-
-        getByteCodeInfoDemo();
-
-        classInstanceTypes();
-
-        fieldSetValue();
     }
 
     public static void fieldSetValue() throws NoSuchFieldException {

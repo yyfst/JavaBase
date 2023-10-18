@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Person {
     private static final int id = 100;
 
-    private String name;
+    private String name = "default";
 
     protected int age;
 
@@ -29,5 +29,15 @@ public class Person {
     public String askName(String str) {
         log.info("test info. {} ask name.", str);
         return name;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Person{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", age=").append(age);
+        sb.append(", height=").append(height);
+        sb.append('}');
+        return sb.toString();
     }
 }

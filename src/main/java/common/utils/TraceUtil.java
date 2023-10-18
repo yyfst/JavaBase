@@ -8,7 +8,7 @@ import java.util.UUID;
 @Slf4j
 public class TraceUtil {
     public static String putTraceIdToMdcAndGet() {
-        String traceId = generateTraceId().replace("-", "");
+        String traceId = generateTraceId().replace("-", "").substring(0, 8);
         MDC.put("traceId", traceId);
         return traceId;
     }
